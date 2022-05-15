@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import SignIn from '../../pages/sign-in/SignIn';
 
 // This site has 3 pages, all of which are rendered
 // dynamically in the browser (not server rendered).
@@ -31,12 +32,9 @@ export default function PublicRoutes() {
           <Route exact path="/">
             {/*<Home/>*/}
           </Route>
-          <Route path="/sign-in">{/*<SignUp />*/}</Route>
-          <Route path="/sign-up">{/* <SignIn/>*/}</Route>
+          <Route path="/sign-in" element={<SignIn />} />
         </Routes>
       </div>
     </Router>
   );
 }
-
-//            <Route path='/' element={<Home/>}/>
