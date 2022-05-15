@@ -1,7 +1,8 @@
 import React from 'react';
 import { Formik } from 'formik';
 import { singUpValidation } from './validations';
-/*import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';*/
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { Button } from 'react-bootstrap';
 
 const initialValues = {
   name: '',
@@ -11,7 +12,7 @@ const initialValues = {
 };
 
 const SignUp = () => {
-  /*const auth = getAuth();
+  const auth = getAuth();
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
@@ -22,7 +23,7 @@ const SignUp = () => {
       const errorCode = error.code;
       const errorMessage = error.message;
       // ..
-    });*/
+    });
   return (
     <div className="mainContainer">
       <h1> Registro </h1>
@@ -33,20 +34,18 @@ const SignUp = () => {
           console.log('values: ', values);
         }}
         validate={(values) => singUpValidation(values)}>
-        <div>
-          <input>
-            <label> Nombre </label>
-          </input>
-          <input>
-            <label> Apellido </label>
-          </input>
-          <input>
-            <label> Email </label>
-          </input>
-          <input>
-            <label> Contraseña </label>
-          </input>
-        </div>
+        <form
+          onSubmit={(values) => {
+            console.log('values: ', values);
+          }}>
+          <input name="name" type="text" />
+          <input name="lastName" type="text" />
+          <input name="email" type="email" />
+          <input name="password" type="password" />
+          <Button variant="primary" type="submit">
+            Confirmar
+          </Button>
+        </form>
       </Formik>
     </div>
   );
