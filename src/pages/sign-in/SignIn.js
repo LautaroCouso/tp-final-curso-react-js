@@ -1,8 +1,10 @@
 import React from 'react';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { Button } from 'react-bootstrap';
+import { Button, Card, Container } from 'react-bootstrap';
 import firebase from '../../config/firebase';
+import './stylesSignIn.css';
+import Input from '../../components/input/Input';
 
 const SignInSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
@@ -23,30 +25,32 @@ function SignIn() {
   };
 
   return (
-    <div className={'signInContainer'}>
-      <h1>Ingresar</h1>
-      <h2>Complete el registro para ingresar</h2>
-      <Formik
-        initialValues={{
-          email: 'ingrese su email',
-          password: ''
-        }}
-        validationSchema={SignInSchema}
-        onSubmit={onSubmitHandlerSingIn}>
-        {/*//renderprops*/}
-        {({ errors, touched }) => (
-          <Form>
-            <Field name="email" type="email" />
-            {errors.email && touched.email ? <div>{errors.email}</div> : null}
-            <Field name="password" type="password" />
-            {errors.password && touched.password ? <div>{errors.password}</div> : null}
-            <Button variant="primary" type="submit">
-              Ingresar
-            </Button>
-          </Form>
-        )}
-      </Formik>
-    </div>
+    <Container className="signInContainer">
+      <Card className="p-md-2">
+        <h1>Ingresar</h1>
+        <h4>Complete el registro para ingresar</h4>
+        <Formik
+          initialValues={{
+            email: 'ingrese su email',
+            password: ''
+          }}
+          validationSchema={SignInSchema}
+          onSubmit={onSubmitHandlerSingIn}>
+          {/*//render props*/}
+          {({ errors, touched }) => (
+            <Form>
+              <Input label={'Email'} name={'email'} type={'email'} />
+              {errors.email && touched.email ? <div>{errors.email}</div> : null}
+              <Input label={'Password'} name={'password'} type={'password'} />
+              {errors.password && touched.password ? <div>{errors.password}</div> : null}
+              <Button variant="primary" type="submit">
+                Ingresar
+              </Button>
+            </Form>
+          )}
+        </Formik>
+      </Card>
+    </Container>
   );
 }
 
