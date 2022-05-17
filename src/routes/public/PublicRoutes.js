@@ -6,6 +6,8 @@ import SignUp from '../../pages/sign-up/signUp';
 import { Navbar, Nav } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import DetailsPage from '../../pages/Details/DetailsPage';
+import AddNewProduct from '../../pages/new-product/AddNewProduct';
+import NewProduct from '../../pages/new-product/NewProduct';
 
 // This site has 3 pages, all of which are rendered
 // dynamically in the browser (not server rendered).
@@ -30,6 +32,12 @@ export default function PublicRoutes() {
               <LinkContainer to="/">
                 <Nav.Link>Home</Nav.Link>
               </LinkContainer>
+              <LinkContainer to="/add">
+                <Nav.Link>Nuevas consolas</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/list">
+                <Nav.Link>Ver consolas nuevas</Nav.Link>
+              </LinkContainer>
               <LinkContainer to="/sign-up">
                 <Nav.Link>Sing Up</Nav.Link>
               </LinkContainer>
@@ -42,6 +50,8 @@ export default function PublicRoutes() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Navigate to="/" />} />
+          <Route path="/add" element={<AddNewProduct />} />
+          <Route path="/list" element={<NewProduct />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/details/:id" element={<DetailsPage />} />
