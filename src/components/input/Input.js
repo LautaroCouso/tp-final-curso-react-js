@@ -1,9 +1,9 @@
 import React from 'react';
 import './inputStyles.css';
 import { ErrorMessage, useField, Field } from 'formik';
+import PropTypes from 'prop-types';
 
 function Input(props) {
-  // eslint-disable-next-line react/prop-types
   const { label, name, type, placeholder } = props;
   const [field, meta] = useField(props);
   return (
@@ -16,12 +16,19 @@ function Input(props) {
           className={`form-control input  ${meta.error && meta.touched && 'is-invalid'}`}
           type={type}
           name={name || ''}
-          placeholder={placeholder}
+          placeholder={placeholder || ''}
         />
         <ErrorMessage name={field.name} component={'div'} className="error" />
       </div>
     </>
   );
 }
+
+Input.propTypes = {
+  label: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['text', 'number', 'email', 'password']).isRequired,
+  placeholder: PropTypes.string
+};
 
 export default Input;
