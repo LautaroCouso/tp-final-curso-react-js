@@ -25,7 +25,7 @@ export default function PublicRoutes() {
             {/*<Home/>*/}
           </Route>
           <Route path="/sign-in" element={<SignIn />} />
-            <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/sign-up" element={<SignUp />} />
         </Routes>
       </div>
     </Router>

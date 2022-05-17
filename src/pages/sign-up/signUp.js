@@ -1,7 +1,7 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import { singUpValidation } from './validations';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import firebase from '../../config/firebase';
 import { Button } from 'react-bootstrap';
 
 const initialValues = {
@@ -12,40 +12,44 @@ const initialValues = {
 };
 
 const SignUp = () => {
-  const auth = getAuth();
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // ..
-    });
+  const handleSubmit = async (values) => {
+    console.log('data: ', values.email, values.password);
+    try {
+      const responseCreateUser = await firebase.auth.createUserWithEmailAndPassword(
+        values.email,
+        values.password
+      );
+      console.log('responseCreateUser', responseCreateUser);
+      if (responseCreateUser.user.uid) {
+        const document = await firebase.db.collection('users').add({
+          name: values.name,
+          lastname: values.lastName,
+          userId: responseCreateUser.user.uid
+        });
+        console.log('document', document);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <div className="mainContainer">
       <h1> Registro </h1>
       <h2> Por favor complete los siguientes campos</h2>
       <Formik
         initialValues={initialValues}
-        onSubmit={(values) => {
-          console.log('values: ', values);
-        }}
-        validate={(values) => singUpValidation(values)}>
-        <form
-          onSubmit={(values) => {
-            console.log('values: ', values);
-          }}>
-          <input name="name" type="text" />
-          <input name="lastName" type="text" />
-          <input name="email" type="email" />
-          <input name="password" type="password" />
+        onSubmit={handleSubmit}
+        validationSchema={singUpValidation}>
+        <Form>
+          <Field name="name" type="text" />
+          <Field name="lastName" type="text" />
+          <Field name="email" type="email" />
+          <Field name="password" type="password" />
           <Button variant="primary" type="submit">
             Confirmar
           </Button>
-        </form>
+        </Form>
       </Formik>
     </div>
   );
