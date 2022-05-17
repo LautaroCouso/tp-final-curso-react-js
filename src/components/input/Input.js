@@ -1,6 +1,5 @@
 import React from 'react';
 import './inputStyles.css';
-import { Form } from 'react-bootstrap';
 import { ErrorMessage, useField, Field } from 'formik';
 
 function Input(props) {
@@ -9,7 +8,7 @@ function Input(props) {
   const [field, meta] = useField(props);
   return (
     <>
-      <Form className="mb-3 inputContainer">
+      <div className=" form mb-3 inputContainer">
         <label htmlFor={field.name} className="label">
           {label}
         </label>
@@ -20,7 +19,7 @@ function Input(props) {
           placeholder={placeholder}
         />
         <ErrorMessage name={field.name} component={'div'} className="error" />
-      </Form>
+      </div>
     </>
   );
 }
