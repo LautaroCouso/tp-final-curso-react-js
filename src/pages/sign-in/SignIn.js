@@ -1,12 +1,13 @@
 import React from 'react';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { Button } from 'react-bootstrap';
+import { Button, Card, Container } from 'react-bootstrap';
 import firebase from '../../config/firebase';
+import Input from '../../components/input/Input';
 
 const SignInSchema = Yup.object().shape({
-  email: Yup.string().email('Invalid email').required('Required'),
-  password: Yup.string().min(7, 'Revise su contraseña').required('ingrese su contraseña')
+  email: Yup.string().email('El email ingresado no es válido').required('Campo requerido'),
+  password: Yup.string().min(7, 'La contraseña ingresada no es válida').required('Campo requerido')
 });
 
 function SignIn() {
@@ -23,30 +24,40 @@ function SignIn() {
   };
 
   return (
-    <div className={'signInContainer'}>
-      <h1>Ingresar</h1>
-      <h2>Complete el registro para ingresar</h2>
-      <Formik
-        initialValues={{
-          email: 'ingrese su email',
-          password: ''
-        }}
-        validationSchema={SignInSchema}
-        onSubmit={onSubmitHandlerSingIn}>
-        {/*//renderprops*/}
-        {({ errors, touched }) => (
-          <Form>
-            <Field name="email" type="email" />
-            {errors.email && touched.email ? <div>{errors.email}</div> : null}
-            <Field name="password" type="password" />
-            {errors.password && touched.password ? <div>{errors.password}</div> : null}
-            <Button variant="primary" type="submit">
-              Ingresar
-            </Button>
-          </Form>
-        )}
-      </Formik>
-    </div>
+    <Container className="formContainer">
+      <Card className="p-3">
+        <h1>Ingresar</h1>
+        <h4>Complete el registro para ingresar</h4>
+        <Formik
+          initialValues={{
+            email: '',
+            password: ''
+          }}
+          validationSchema={SignInSchema}
+          onSubmit={onSubmitHandlerSingIn}>
+          {/*//render props*/}
+          {() => (
+            <Form>
+              <Input
+                label={'Email'}
+                name={'email'}
+                type={'email'}
+                placeholder={'Escriba aquí su email'}
+              />
+              <Input
+                label={'Password'}
+                name={'password'}
+                type={'password'}
+                placeholder={'Escriba aquí su contraseña'}
+              />
+              <Button variant="primary" type="submit">
+                Ingresar
+              </Button>
+            </Form>
+          )}
+        </Formik>
+      </Card>
+    </Container>
   );
 }
 

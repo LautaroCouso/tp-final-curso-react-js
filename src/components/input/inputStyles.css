@@ -1,0 +1,24 @@
+.input {
+    border: #70768c solid;
+    margin-bottom: 5px;
+}
+.input:hover {
+    cursor: pointer;
+}
+
+.label {
+    line-height: 20px;
+    font-weight: bold;
+}
+
+.error{
+    color: #a80b0b;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+}
+

@@ -1,3 +1,18 @@
 .signInContainer {
-    background-color: deeppink;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem;
+    background-color: #1B8EF9;
+}
+
+.card {
+    width: 50rem;
+    border: #a80b0b solid ;
+    border-radius: 5px;
+}
+
+.btn-primary{
+    padding: 10px;
 }

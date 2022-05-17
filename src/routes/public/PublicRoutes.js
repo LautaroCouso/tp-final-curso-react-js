@@ -1,35 +1,52 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import SignUp from '../../pages/sign-up/signUp';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import SignIn from '../../pages/sign-in/SignIn';
+import Home from '../../pages/home/Home';
+import SignUp from '../../pages/sign-up/signUp';
+import { Navbar, Nav } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import DetailsPage from '../../pages/Details/DetailsPage';
+
+// This site has 3 pages, all of which are rendered
+// dynamically in the browser (not server rendered).
+//
+// Although the page does not ever refresh, notice how
+// React Router keeps the URL up to date as you navigate
+// through the site. This preserves the browser history,
+// making sure things like the back button and bookmarks
+// work properly.
 
 export default function PublicRoutes() {
   return (
     <Router>
       <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/sign-in">Sign-in</Link>
-          </li>
-          <li>
-            <Link to="/sign-up">Sign-up</Link>
-          </li>
-        </ul>
-        <hr />
-
+        <Navbar bg="light" expand="lg">
+          <Nav.Link to="/">
+            <Navbar.Brand>React Final Project</Navbar.Brand>
+          </Nav.Link>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+              <LinkContainer to="/">
+                <Nav.Link>Home</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/sign-up">
+                <Nav.Link>Sing Up</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/sign-in">
+                <Nav.Link>Sing Up</Nav.Link>
+              </LinkContainer>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
         <Routes>
-          <Route exact path="/">
-            {/*<Home/>*/}
-          </Route>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Navigate to="/" />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/details/:id" element={<DetailsPage />} />
         </Routes>
       </div>
     </Router>
   );
 }
-
-//

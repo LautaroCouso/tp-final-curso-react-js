@@ -1,8 +1,10 @@
 import React from 'react';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form } from 'formik';
 import { singUpValidation } from './validations';
 import firebase from '../../config/firebase';
-import { Button } from 'react-bootstrap';
+import { Button, Container, Card } from 'react-bootstrap';
+import Input from '../../components/input/Input';
+import './stylesSignUp.css';
 
 const initialValues = {
   name: '',
@@ -34,24 +36,26 @@ const SignUp = () => {
   };
 
   return (
-    <div className="mainContainer">
-      <h1> Registro </h1>
-      <h2> Por favor complete los siguientes campos</h2>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-        validationSchema={singUpValidation}>
-        <Form>
-          <Field name="name" type="text" />
-          <Field name="lastName" type="text" />
-          <Field name="email" type="email" />
-          <Field name="password" type="password" />
-          <Button variant="primary" type="submit">
-            Confirmar
-          </Button>
-        </Form>
-      </Formik>
-    </div>
+    <Container className="formContainer">
+      <Card className="p-3">
+        <h1> Registro </h1>
+        <h2> Por favor complete los siguientes campos</h2>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+          validationSchema={singUpValidation}>
+          <Form>
+            <Input name="name" type="text" label="Nombre" placeholder="Nombre" />
+            <Input name="lastName" type="text" label="Apellido" placeholder="Apellido" />
+            <Input name="email" type="email" label="Email" placeholder="Email" />
+            <Input name="password" type="password" label="Contraseña" placeholder="Contraseña" />
+            <Button variant="primary" type="submit">
+              Confirmar
+            </Button>
+          </Form>
+        </Formik>
+      </Card>
+    </Container>
   );
 };
 
