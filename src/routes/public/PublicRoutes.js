@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import SignUp from '../../pages/sign-up/signUp';
+import SignIn from '../../pages/sign-in/SignIn';
 
 export default function PublicRoutes() {
   return (
@@ -23,12 +24,12 @@ export default function PublicRoutes() {
           <Route exact path="/">
             {/*<Home/>*/}
           </Route>
-          <Route path="/sign-in">{/*<SignUp />*/}</Route>
-          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-up" element={<SignUp />} />
         </Routes>
       </div>
     </Router>
   );
 }
 
-//            <Route path='/' element={<Home/>}/>
+//
