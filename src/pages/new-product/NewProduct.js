@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Container } from 'react-bootstrap';
 import './newProductStyles.css';
-import Item from '../../components/product/Item';
 import { getNewProduct } from '../../service/productServicesFirebase';
+import NewItem from '../../components/product/NewItem';
 
 function NewProduct() {
   const [newProduct, setNewProduct] = useState([]);
@@ -21,16 +21,16 @@ function NewProduct() {
   return (
     <Container className="container-fluid">
       <Card className="p-md-2">
-        <h1>Nuevas Consolas</h1>
+        <h1>Nuevas 111 Consolas</h1>
       </Card>
       {newProduct && newProduct.length > 0 ? (
         <div className="row d-flex justify-content-center">
           {newProduct.map((item) => (
-            <Item
-              title={item.data().name}
+            <NewItem
+              title={item?.data().name}
               id={item.id}
-              price={item.data().price}
-              thumbnail={item.thumbnail}
+              price={item?.data().price}
+              thumbnail={item?.thumbnail}
               key={item.id}
             />
           ))}

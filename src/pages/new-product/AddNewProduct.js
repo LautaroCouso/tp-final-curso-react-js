@@ -64,7 +64,6 @@ function AddNewProduct() {
                 placeholder={'Escriba aquí el precio del producto'}
               />
               <ButtonWithLoading loading={loading} label={'Agregar producto'} type="submit" />
-
               <Alert {...alert} />
             </Form>
           )}
