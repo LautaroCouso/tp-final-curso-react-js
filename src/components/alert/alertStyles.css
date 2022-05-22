@@ -1,0 +1,7 @@
+.alertContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eea957;
+    margin-top: 500px;
+}

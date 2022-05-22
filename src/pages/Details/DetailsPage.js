@@ -23,7 +23,9 @@ function DetailsPage() {
           <Card.Title>{detailItem.title}</Card.Title>
           <Card.Img src={detailItem.thumbnail} />
           <Card.Text>Precio:{detailItem.price}</Card.Text>
-          <Card.Text>Cantidad vendida:{detailItem.available_quantity}</Card.Text>
+          {detailItem.available_quantity && (
+            <Card.Text>Cantidad vendida:{detailItem.available_quantity}</Card.Text>
+          )}
           <Button>Comprar</Button>
         </Card>
       ) : (

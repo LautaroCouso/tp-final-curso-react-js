@@ -1,13 +1,18 @@
-import React from 'react';
-import { Button, Container } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Container } from 'react-bootstrap';
 import './newProductStyles.css';
 import { Form, Formik } from 'formik';
 import Input from '../../components/input/Input';
 import { addNewProductsValidation } from './addNewProductsValidation';
 import firebase from '../../config/firebase';
+import Alert from '../../components/alert';
+import ButtonWithLoading from '../../components/button-with-loading';
 
 function AddNewProduct() {
-  const onSubmitAddNewProduct = async (data) => {
+  const [alert, setAlert] = useState({ variant: '', text: '' });
+  const [loading, setLoading] = useState(false);
+  const onSubmitAddNewProduct = async (data, { resetForm }) => {
+    setLoading(true);
     console.log('Form', data);
     try {
       const document = await firebase.firestore().collection('products').add({
@@ -15,9 +20,13 @@ function AddNewProduct() {
         description: data.description,
         price: data.price
       });
+      setAlert({ variant: 'success', text: 'Fue agregado el producto ' + (data.name || '') });
       console.log('document', document);
+      resetForm({});
+      setLoading(false);
     } catch (e) {
       console.log(e);
+      setLoading(false);
     }
   };
 
@@ -54,9 +63,9 @@ function AddNewProduct() {
                 type={'number'}
                 placeholder={'Escriba aquí el precio del producto'}
               />
-              <Button variant="primary" type="submit">
-                Agregar nueva consola
-              </Button>
+              <ButtonWithLoading loading={loading} label={'Agregar producto'} type="submit" />
+
+              <Alert {...alert} />
             </Form>
           )}
         </Formik>

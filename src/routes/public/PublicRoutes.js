@@ -42,7 +42,7 @@ export default function PublicRoutes() {
                 <Nav.Link>Sing Up</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/sign-in">
-                <Nav.Link>Sing Up</Nav.Link>
+                <Nav.Link>Sing In</Nav.Link>
               </LinkContainer>
             </Nav>
           </Navbar.Collapse>
