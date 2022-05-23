@@ -9,6 +9,7 @@ import DetailsPage from '../../pages/Details/DetailsPage';
 import AddNewProduct from '../../pages/new-product/AddNewProduct';
 import NewProduct from '../../pages/new-product/NewProduct';
 import DetailsNewProductPage from '../../components/details/DetailsNewProductPage';
+import Modify from '../../pages/new-product/Modify';
 
 // This site has 3 pages, all of which are rendered
 // dynamically in the browser (not server rendered).
@@ -54,6 +55,7 @@ export default function PublicRoutes() {
           <Route path="/add" element={<AddNewProduct />} />
           <Route path="/new" element={<NewProduct />} />
           <Route path="/new/:id" element={<DetailsNewProductPage />} />
+          <Route path="/new/modify/:id" element={<Modify />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/details/:id" element={<DetailsPage />} />
