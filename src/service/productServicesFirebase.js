@@ -13,6 +13,6 @@ export async function updateNewProduct(id, data) {
   return await firebase.firestore().doc(`/products/${id}`).set(data);
 }
 
-//export async function deleteNewProduct(id) {
-//   return await firebase.firestore().doc(`products/${id}`).delete();
-// }
+export async function deleteNewProduct(id) {
+  return await firebase.firestore().doc(`products/${id}`).delete();
+}

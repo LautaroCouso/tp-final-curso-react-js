@@ -5,9 +5,12 @@ import Input from '../../components/input/Input';
 import { addNewProductsValidation } from './addNewProductsValidation';
 import ButtonWithLoading from '../../components/button-with-loading';
 import { useParams } from 'react-router-dom';
-import { getDetailsNewProduct, updateNewProduct } from '../../service/productServicesFirebase';
+import {
+  deleteNewProduct,
+  getDetailsNewProduct,
+  updateNewProduct
+} from '../../service/productServicesFirebase';
 import Loading from '../../components/Loading';
-import firebase from '../../config/firebase';
 
 function Modify() {
   const [loading, setLoading] = useState(false);
@@ -44,8 +47,12 @@ function Modify() {
   };
 
   const handleDelete = async () => {
-    const document = await firebase.db.doc('products/' + id).delete();
-    console.log(document);
+    try {
+      const documentDelete = await deleteNewProduct(id);
+      console.log(documentDelete);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
