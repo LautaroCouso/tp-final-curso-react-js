@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Container } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import './newProductStyles.css';
 import { getNewProduct } from '../../service/productServicesFirebase';
 import NewItem from '../../components/product/NewItem';
 import Loading from '../../components/Loading';
-
 function NewProduct() {
   const [newProduct, setNewProduct] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -24,25 +23,27 @@ function NewProduct() {
   }, []);
   return (
     <Loading loading={loading}>
-      <Container className="container-fluid">
-        <Card className="p-md-2">
-          <h1>Nuevas Consolas</h1>
-        </Card>
-        {newProduct && newProduct.length > 0 ? (
-          <div className="row d-flex justify-content-center">
-            {newProduct.map((item) => (
-              <NewItem
-                title={item?.data().name}
-                id={item.id}
-                price={item?.data().price}
-                thumbnail={item?.thumbnail}
-                key={item.id}
-              />
-            ))}
-          </div>
-        ) : (
-          <p>No items found</p>
-        )}
+      <Container className="container-fluid containerNewProduct">
+        <h1>Nuevas Consolas</h1>
+        <Row className="justify-content-md-center">
+          <Col md="auto">
+            {newProduct && newProduct.length > 0 ? (
+              <div className="row d-flex justify-content-center">
+                {newProduct.map((item) => (
+                  <NewItem
+                    title={item?.data().name}
+                    id={item.id}
+                    price={item?.data().price}
+                    thumbnail={item?.thumbnail}
+                    key={item.id}
+                  />
+                ))}
+              </div>
+            ) : (
+              <p>No items found</p>
+            )}
+          </Col>
+        </Row>
       </Container>
     </Loading>
   );

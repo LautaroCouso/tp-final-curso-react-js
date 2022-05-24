@@ -1,8 +1,9 @@
 .App {
   text-align: center;
-}
-body {
   background-color: #1B8EF9;
+}
+.body {
+  background-color: #ffffff;
   align-items: center;
   justify-content: center;
 }

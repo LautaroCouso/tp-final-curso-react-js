@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Formik, Form } from 'formik';
-import { singUpValidation } from './validations';
+import { singUpValidation } from '../../Utils/validationsSignUp';
 import firebase from '../../config/firebase';
 import { Button, Container, Card } from 'react-bootstrap';
 import Input from '../../components/input/Input';

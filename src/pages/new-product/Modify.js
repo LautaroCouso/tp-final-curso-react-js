@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './newProductStyles.css';
 import { Form, Formik } from 'formik';
 import Input from '../../components/input/Input';
-import { addNewProductsValidation } from './addNewProductsValidation';
+import { newProductsValidation } from '../../Utils/newProductsValidation';
 import ButtonWithLoading from '../../components/button-with-loading';
 import { useParams } from 'react-router-dom';
 import {
@@ -11,9 +11,11 @@ import {
   updateNewProduct
 } from '../../service/productServicesFirebase';
 import Loading from '../../components/Loading';
+import AlertCustom from '../../components/alert';
 
 function Modify() {
   const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState({ variant: '', text: '' });
   const [initialValues, setInitialValues] = useState(null);
   const { id } = useParams();
 
@@ -41,6 +43,7 @@ function Modify() {
     try {
       const documentInfo = await updateNewProduct(id, data);
       console.log(documentInfo);
+      setAlert({ variant: 'primary', text: 'El producto fue modificado' });
     } catch (e) {
       console.log(e);
     }
@@ -50,6 +53,7 @@ function Modify() {
     try {
       const documentDelete = await deleteNewProduct(id);
       console.log(documentDelete);
+      setAlert({ variant: 'primary', text: 'El producto fue eliminado' });
     } catch (e) {
       console.log(e);
     }
@@ -62,7 +66,7 @@ function Modify() {
         <Formik
           enableReinitialize={true}
           initialValues={initialValues ? initialValues : { name: '', description: '', price: '' }}
-          validationSchema={addNewProductsValidation}
+          validationSchema={newProductsValidation}
           onSubmit={onSubmitModify}>
           {/*//render props*/}
           {() => (
@@ -94,6 +98,7 @@ function Modify() {
           )}
         </Formik>
         <ButtonWithLoading loading={loading} onPress={handleDelete} label={'Eliminar console'} />
+        <AlertCustom {...alert} />
       </div>
     </Loading>
   );

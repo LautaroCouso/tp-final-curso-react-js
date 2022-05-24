@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
 import { Button, Card, Container } from 'react-bootstrap';
 import firebase from '../../config/firebase';
 import Input from '../../components/input/Input';
 import AlertCustom from '../../components/alert';
-
-const SignInSchema = Yup.object().shape({
-  email: Yup.string().email('El email ingresado no es válido').required('Campo requerido'),
-  password: Yup.string().min(7, 'La contraseña ingresada no es válida').required('Campo requerido')
-});
+import { singInValidation } from '../../Utils/validationsSignIn';
 
 function SignIn() {
   const [alert, setAlert] = useState({ variant: '', text: '' });
@@ -36,22 +31,17 @@ function SignIn() {
             email: '',
             password: ''
           }}
-          validationSchema={SignInSchema}
+          validationSchema={singInValidation}
           onSubmit={onSubmitHandlerSingIn}>
           {/*//render props*/}
           {() => (
             <Form>
+              <Input label="Email" name="email" type="email" placeholder="Escriba aquí su email" />
               <Input
-                label={'Email'}
-                name={'email'}
-                type={'email'}
-                placeholder={'Escriba aquí su email'}
-              />
-              <Input
-                label={'Password'}
-                name={'password'}
-                type={'password'}
-                placeholder={'Escriba aquí su contraseña'}
+                label="Password"
+                name="password"
+                type="password"
+                placeholder="Escriba aquí su contraseña"
               />
               <Button variant="primary" type="submit">
                 Ingresar

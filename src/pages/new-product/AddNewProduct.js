@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap';
 import './newProductStyles.css';
 import { Form, Formik } from 'formik';
 import Input from '../../components/input/Input';
-import { addNewProductsValidation } from './addNewProductsValidation';
+import { newProductsValidation } from '../../Utils/newProductsValidation';
 import firebase from '../../config/firebase';
 import Alert from '../../components/alert';
 import ButtonWithLoading from '../../components/button-with-loading';
@@ -15,13 +15,12 @@ function AddNewProduct() {
     setLoading(true);
     console.log('Form', data);
     try {
-      const document = await firebase.firestore().collection('products').add({
+      await firebase.firestore().collection('products').add({
         name: data.name,
         description: data.description,
         price: data.price
       });
       setAlert({ variant: 'primary', text: 'Fue agregado el producto ' + (data.name || '') });
-      console.log('document', document);
       resetForm({});
       setLoading(false);
     } catch (e) {
@@ -31,7 +30,7 @@ function AddNewProduct() {
   };
 
   return (
-    <Container className="container-fluid">
+    <Container className="container-lg containerNewProduct">
       <h1>Agregar una nueva consola</h1>
       <div className="row d-flex justify-content-center">
         <Formik
@@ -40,9 +39,8 @@ function AddNewProduct() {
             description: '',
             price: ''
           }}
-          validationSchema={addNewProductsValidation}
+          validationSchema={newProductsValidation}
           onSubmit={onSubmitAddNewProduct}>
-          {/*//render props*/}
           {() => (
             <Form>
               <Input
