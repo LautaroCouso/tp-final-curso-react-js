@@ -23,7 +23,7 @@ function SignIn() {
   };
   return (
     <Container className="formContainer">
-      <Card className="p-3">
+      <Card className="card-title">
         <h1>Ingresar</h1>
         <h4>Complete el registro para ingresar</h4>
         <Formik

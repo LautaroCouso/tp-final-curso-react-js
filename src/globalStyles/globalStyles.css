@@ -7,3 +7,13 @@
     padding-left: 5rem;
     background-color: #1B8EF9;
 }
+
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary{
+    padding: 10px;
+}
