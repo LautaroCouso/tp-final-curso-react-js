@@ -4,7 +4,6 @@ import { singUpValidation } from '../../Utils/validationsSignUp';
 import firebase from '../../config/firebase';
 import { Button, Container, Card } from 'react-bootstrap';
 import Input from '../../components/input/Input';
-import './stylesSignUp.css';
 import AlertCustom from '../../components/alert';
 
 const initialValues = {

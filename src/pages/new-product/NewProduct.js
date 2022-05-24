@@ -4,6 +4,7 @@ import './newProductStyles.css';
 import { getNewProduct } from '../../service/productServicesFirebase';
 import NewItem from '../../components/product/NewItem';
 import Loading from '../../components/Loading';
+import '../../globalStyles/globalStyles.css';
 function NewProduct() {
   const [newProduct, setNewProduct] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -23,7 +24,7 @@ function NewProduct() {
   }, []);
   return (
     <Loading loading={loading}>
-      <Container className="container-fluid containerNewProduct">
+      <Container className="container-fluid containerNewProduct containerMin ">
         <h1>Nuevas Consolas</h1>
         <Row className="justify-content-md-center">
           <Col md="auto">

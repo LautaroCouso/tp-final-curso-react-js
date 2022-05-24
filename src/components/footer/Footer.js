@@ -9,7 +9,7 @@ import gooIcon from '../../assets/images/gooIcon.svg';
 
 const Footer = () => {
   return (
-    <footer className="bg-dark text-center text-white">
+    <footer className="bg-dark text-center text-white mt-auto">
       <div className="container p-4">
         <section className="mb-4">
           <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">

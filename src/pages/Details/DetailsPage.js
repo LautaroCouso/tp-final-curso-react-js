@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Card, Button } from 'react-bootstrap';
+import '../../globalStyles/globalStyles.css';
 
 function DetailsPage() {
   let { id } = useParams();
@@ -17,7 +18,7 @@ function DetailsPage() {
       });
   }, []);
   return (
-    <Container className="main">
+    <Container className="containerMin">
       {detailItem !== null ? (
         <Card>
           <Card.Title>{detailItem.title}</Card.Title>

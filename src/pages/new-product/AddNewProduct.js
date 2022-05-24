@@ -7,6 +7,7 @@ import { newProductsValidation } from '../../Utils/newProductsValidation';
 import firebase from '../../config/firebase';
 import Alert from '../../components/alert';
 import ButtonWithLoading from '../../components/button-with-loading';
+import '../../globalStyles/globalStyles.css';
 
 function AddNewProduct() {
   const [alert, setAlert] = useState({ variant: '', text: '' });
@@ -30,7 +31,7 @@ function AddNewProduct() {
   };
 
   return (
-    <Container className="container-lg containerNewProduct">
+    <Container className="container-lg containerNewProduct containerMin">
       <h1>Agregar una nueva consola</h1>
       <div className="row d-flex justify-content-center">
         <Formik

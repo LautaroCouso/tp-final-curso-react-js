@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Formik, Form } from 'formik';
-import { Button, Card, Container } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import firebase from '../../config/firebase';
 import Input from '../../components/input/Input';
 import AlertCustom from '../../components/alert';
 import { singInValidation } from '../../Utils/validationsSignIn';
-
+import '../../globalStyles/globalStyles.css';
 function SignIn() {
   const [alert, setAlert] = useState({ variant: '', text: '' });
   const onSubmitHandlerSingIn = async (values) => {
@@ -23,7 +23,7 @@ function SignIn() {
   };
   return (
     <Container className="formContainer">
-      <Card className="card-title">
+      <div className={'containerMin'}>
         <h1>Ingresar</h1>
         <h4>Complete el registro para ingresar</h4>
         <Formik
@@ -50,7 +50,7 @@ function SignIn() {
             </Form>
           )}
         </Formik>
-      </Card>
+      </div>
     </Container>
   );
 }

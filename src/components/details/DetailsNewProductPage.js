@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Container, Card, Button } from 'react-bootstrap';
 import { getDetailsNewProduct } from '../../service/productServicesFirebase';
 import Loading from '../Loading';
+import '../../globalStyles/globalStyles.css';
 
 function DetailsNewProductPage() {
   let { id } = useParams();
@@ -25,8 +26,8 @@ function DetailsNewProductPage() {
   }, [id]);
   return (
     <Loading loading={loading}>
-      <Container className="main">
-        <Card>
+      <Container className="containerMin formContainer">
+        <Card className="h-100">
           <Card.Title>{item?.name}</Card.Title>
           <Card.Title>{item?.description}</Card.Title>
           <Card.Title>{item?.thumbnail}</Card.Title>
