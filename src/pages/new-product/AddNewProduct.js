@@ -20,7 +20,7 @@ function AddNewProduct() {
         description: data.description,
         price: data.price
       });
-      setAlert({ variant: 'success', text: 'Fue agregado el producto ' + (data.name || '') });
+      setAlert({ variant: 'primary', text: 'Fue agregado el producto ' + (data.name || '') });
       console.log('document', document);
       resetForm({});
       setLoading(false);

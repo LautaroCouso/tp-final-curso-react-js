@@ -7,7 +7,7 @@ function ButtonWithLoading(props) {
 
   return (
     <Button
-      variant={configuration?.variant || 'outline-success'}
+      variant={configuration?.variant || 'primary'}
       type={configuration?.type || 'submit'}
       disabled={loading}
       onClick={onPress}>

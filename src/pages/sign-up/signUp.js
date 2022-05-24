@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form } from 'formik';
 import { singUpValidation } from './validations';
 import firebase from '../../config/firebase';
 import { Button, Container, Card } from 'react-bootstrap';
 import Input from '../../components/input/Input';
 import './stylesSignUp.css';
+import AlertCustom from '../../components/alert';
 
 const initialValues = {
   name: '',
@@ -14,6 +15,7 @@ const initialValues = {
 };
 
 const SignUp = () => {
+  const [alert, setAlert] = useState({ variant: '', text: '' });
   const handleSubmit = async (values) => {
     console.log('data: ', values.email, values.password);
     try {
@@ -29,9 +31,11 @@ const SignUp = () => {
           userId: responseCreateUser.user.uid
         });
         console.log('document', document);
+        setAlert({ variant: 'primary', text: 'Se ha registrado correctamente' });
       }
     } catch (e) {
       console.log(e);
+      setAlert({ variant: 'danger', text: 'Las cosas no siempre salen como las planeamos' });
     }
   };
 
@@ -52,6 +56,7 @@ const SignUp = () => {
             <Button variant="primary" type="submit">
               Confirmar
             </Button>
+            <AlertCustom {...alert} />
           </Form>
         </Formik>
       </Card>

@@ -20,7 +20,7 @@ function SignIn() {
         values.password
       );
       console.log('responseUser', responseUser);
-      setAlert({ variant: 'success', text: 'Bienvenido' });
+      setAlert({ variant: 'primary', text: 'Bienvenido' });
     } catch (e) {
       console.log(e);
       setAlert({ variant: 'danger', text: 'Las cosas no siempre salen como las planeamos' });
