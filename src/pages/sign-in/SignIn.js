@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { Button, Card, Container } from 'react-bootstrap';
 import firebase from '../../config/firebase';
 import Input from '../../components/input/Input';
+import AlertCustom from '../../components/alert';
 
 const SignInSchema = Yup.object().shape({
   email: Yup.string().email('El email ingresado no es válido').required('Campo requerido'),
@@ -11,6 +12,7 @@ const SignInSchema = Yup.object().shape({
 });
 
 function SignIn() {
+  const [alert, setAlert] = useState({ variant: '', text: '' });
   const onSubmitHandlerSingIn = async (values) => {
     try {
       const responseUser = await firebase.auth.signInWithEmailAndPassword(
@@ -18,11 +20,12 @@ function SignIn() {
         values.password
       );
       console.log('responseUser', responseUser);
+      setAlert({ variant: 'success', text: 'Bienvenido' });
     } catch (e) {
       console.log(e);
+      setAlert({ variant: 'danger', text: 'Las cosas no siempre salen como las planeamos' });
     }
   };
-
   return (
     <Container className="formContainer">
       <Card className="p-3">
@@ -53,6 +56,7 @@ function SignIn() {
               <Button variant="primary" type="submit">
                 Ingresar
               </Button>
+              <AlertCustom {...alert} />
             </Form>
           )}
         </Formik>
