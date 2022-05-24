@@ -11,7 +11,8 @@ const Item = ({ title, price, thumbnail, id }) => {
       <Card.Img variant="top" src={imageSource} />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
-        <Card.Text>{price}</Card.Text>
+        <Card.Text>SKU: {id}</Card.Text>
+        <Card.Text>$ {price}</Card.Text>
         <Button variant="primary">Comprar</Button>
         <Button variant="primary" as={Link} to={`/details/${id}`}>
           Detalles
